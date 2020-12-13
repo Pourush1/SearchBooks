@@ -73,9 +73,18 @@ const BookSearch = () => {
         </div>
       </div>
       {allAvailableBooks.length ? (
-        <div>
+        <div className="row col-10">
           {allAvailableBooks.map(book => {
-            return <Book title={book.volumeInfo.title} />;
+            return (
+              <Book
+                title={book.volumeInfo.title}
+                authors={book.volumeInfo.authors}
+                publishedDate={book.volumeInfo.publishedDate}
+                thumbnail={book.volumeInfo.imageLinks?.thumbnail}
+                description={book.volumeInfo.description}
+                publisher={book.volumeInfo.publisher}
+              />
+            );
           })}
         </div>
       ) : (
