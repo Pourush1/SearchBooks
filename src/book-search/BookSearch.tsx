@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getBooksByType } from './book-search.service';
-import Book from '../components/Book';
+import Book from '../components/Book/Book';
 
 interface IBook {
   volumeInfo: {
@@ -32,6 +32,7 @@ const BookSearch = () => {
     }
     getAllBooks();
   }, [bookTypeToSearch]);
+
   return (
     <>
       <div className="book--container">
@@ -73,7 +74,7 @@ const BookSearch = () => {
         </div>
       </div>
       {allAvailableBooks.length ? (
-        <div className="row col-10">
+        <div className="row">
           {allAvailableBooks.map(book => {
             return (
               <Book
