@@ -1,29 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { IBook } from '../../book-search/BookSearch';
 
-interface IBooksProps {
-  title: string;
-  authors?: string[];
-  publishedDate?: string;
-  thumbnail?: string;
-  publisher?: string;
-  description?: string;
+interface IAddToWish {
+  addToWishList: (book: IBook) => void;
 }
 
-const Book = ({
+const Book: React.FC<IBook & IAddToWish> = ({
   title,
   authors,
   publishedDate,
   thumbnail,
   publisher,
-  description
-}: IBooksProps) => {
+  description,
+  addToWishList
+}) => {
   return (
-    <div className="col md-2">
-      <div className="card">
+    <div className="col-sm-3">
+      <div className="card p-3">
+        <img
+          className="card-img-top mb-2"
+          src={thumbnail}
+          alt="book cover"
+        ></img>
         <p>{title}</p>
         <div className="card-body">
           <h1>{publishedDate}</h1>
           <h1>{publisher}</h1>
+          <button
+            onClick={() =>
+              addToWishList({ title, thumbnail, publisher, publishedDate })
+            }
+            className="btn btn-primary"
+          >
+            Add to WishList
+          </button>
         </div>
       </div>
     </div>

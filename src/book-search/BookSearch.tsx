@@ -1,28 +1,40 @@
 import React, { useEffect, useState } from 'react';
 import { getBooksByType } from './book-search.service';
-import Book from '../components/Book/Book';
+import BookList from '../components/BookList/BookList';
+import WishList from '../components/WishList/WishList';
 
-interface IBook {
-  volumeInfo: {
-    title: string;
-    publisher?: string;
-    authors: string[];
-    description: string;
-    publishedDate: string;
-    imageLinks?: {
-      thumbnail: string;
-    };
-  };
+export interface IBook {
+  title: string;
+  authors?: string[];
+  publishedDate?: string;
+  thumbnail?: string;
+  publisher?: string;
+  description?: string;
 }
 
 const BookSearch = () => {
   const [bookType, updateBookType] = useState('');
   const [bookTypeToSearch, updateBookTypeToSearch] = useState('');
   const [allAvailableBooks, setAllAvailableBooks] = useState<IBook[]>([]);
+  const [wishList, setWishList] = useState<IBook[]>([]);
+
   async function requestBooks() {
     if (bookTypeToSearch) {
-      const allBooks = await getBooksByType(bookTypeToSearch);
-      setAllAvailableBooks(allBooks.items);
+      const { items } = await getBooksByType(bookTypeToSearch);
+      if (items) {
+        const requiredBooks: IBook[] = items.map((book: any) => {
+          const { volumeInfo } = book;
+          return {
+            title: volumeInfo.title,
+            authors: volumeInfo.authors,
+            publishedDate: volumeInfo.publishedDate,
+            thumbnail: volumeInfo?.imageLinks?.thumbnail,
+            publisher: volumeInfo.publisher,
+            description: volumeInfo.description
+          };
+        });
+        setAllAvailableBooks(requiredBooks);
+      }
     }
   }
 
@@ -32,6 +44,32 @@ const BookSearch = () => {
     }
     getAllBooks();
   }, [bookTypeToSearch]);
+
+  useEffect(() => {
+    if (bookType) {
+      const timeOut = setTimeout(() => updateBookTypeToSearch(bookType), 500);
+      return () => clearTimeout(timeOut);
+    } else {
+      setAllAvailableBooks([]);
+    }
+  }, [bookType]);
+
+  const addToWishList = (book: IBook) => {
+    let newWishList = [...wishList];
+    let itemInCart = newWishList.find(
+      item => item.thumbnail === book.thumbnail
+    );
+    if (!itemInCart) {
+      let newItem = {
+        title: book.title,
+        publisher: book.publisher,
+        thumbnail: book.thumbnail
+      };
+      newWishList.push(newItem);
+    }
+    console.log(newWishList);
+    setWishList(newWishList);
+  };
 
   return (
     <>
@@ -73,26 +111,19 @@ const BookSearch = () => {
           </div>
         </div>
       </div>
+
       {allAvailableBooks.length ? (
         <div className="row">
-          {allAvailableBooks.map(book => {
-            return (
-              <Book
-                title={book.volumeInfo.title}
-                authors={book.volumeInfo.authors}
-                publishedDate={book.volumeInfo.publishedDate}
-                thumbnail={book.volumeInfo.imageLinks?.thumbnail}
-                description={book.volumeInfo.description}
-                publisher={book.volumeInfo.publisher}
-              />
-            );
-          })}
+          <div className="col-md-8">
+            <BookList books={allAvailableBooks} addToWishList={addToWishList} />
+          </div>
+          <div className="col-md-4">
+            <WishList books={wishList} />
+          </div>
         </div>
       ) : (
-        <h1>Empty right now</h1>
+        <h1>Loading</h1>
       )}
-
-      {/* {<pre>{JSON.stringify(allAvailableBooks, null, 4)}</pre>} */}
     </>
   );
 };
