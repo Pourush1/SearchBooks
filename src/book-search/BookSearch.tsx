@@ -18,6 +18,7 @@ const BookSearch = () => {
   const [allAvailableBooks, setAllAvailableBooks] = useState<IBook[]>([]);
   const [wishList, setWishList] = useState<IBook[]>([]);
   const [isLoading, setLoading] = useState(false);
+
   async function requestBooks() {
     if (bookTypeToSearch) {
       setLoading(true);
@@ -125,10 +126,14 @@ const BookSearch = () => {
       {allAvailableBooks.length > 0 && (
         <div className="row flex-md-row-reverse mx-3 ">
           <div className="col-md-4  border border-primary m-3 m-md-0">
-            <WishList books={wishList} />
+            <WishList wishList={wishList} />
           </div>
           <div className="col-md-8">
-            <BookList books={allAvailableBooks} addToWishList={addToWishList} />
+            <BookList
+              allAvailableBooks={allAvailableBooks}
+              wishList={wishList}
+              addToWishList={addToWishList}
+            />
           </div>
         </div>
       )}

@@ -34,6 +34,10 @@ describe('<Book />', () => {
     expect(mock).toHaveBeenCalledTimes(2);
   });
 
+  it('shows the button is not disabled', () => {
+    expect(screen.getByRole('button')).not.toHaveAttribute('disabled');
+  });
+
   it('matches snapshot', () => {
     const { baseElement } = documentBody;
     expect(baseElement).toMatchSnapshot();

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IBook } from '../../book-search/BookSearch';
 
 interface IAddToWish {
   addToWishList: (book: IBook) => void;
+  disableAddToWishListButton: boolean;
 }
 
 const Book: React.FC<IBook & IAddToWish> = ({
@@ -11,7 +12,8 @@ const Book: React.FC<IBook & IAddToWish> = ({
   publishedDate,
   thumbnail,
   publisher,
-  addToWishList
+  addToWishList,
+  disableAddToWishListButton
 }) => {
   return (
     <div className="col-sm-3 pb-3">
@@ -30,6 +32,7 @@ const Book: React.FC<IBook & IAddToWish> = ({
               addToWishList({ title, thumbnail, publisher, publishedDate })
             }
             className="btn btn-primary"
+            disabled={disableAddToWishListButton}
           >
             Add to WishList
           </button>

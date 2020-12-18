@@ -3,14 +3,24 @@ import { IBook } from '../../book-search/BookSearch';
 import Book from '../Book/Book';
 
 export interface IBookList {
-  books: IBook[];
+  allAvailableBooks: IBook[];
+  wishList: IBook[];
   addToWishList: (book: IBook) => void;
 }
 
-const BookList: React.FC<IBookList> = ({ books, addToWishList }) => {
+const BookList: React.FC<IBookList> = ({
+  allAvailableBooks,
+  addToWishList,
+  wishList
+}) => {
   return (
     <div className="row">
-      {books.map((book: IBook) => {
+      {allAvailableBooks.map((book: IBook) => {
+        const disableAddToWishListButton = wishList.find(
+          bookInWishList => bookInWishList.thumbnail === book.thumbnail
+        )
+          ? true
+          : false;
         return (
           <Book
             title={book.title}
@@ -20,6 +30,7 @@ const BookList: React.FC<IBookList> = ({ books, addToWishList }) => {
             thumbnail={book.thumbnail}
             description={book.description}
             addToWishList={addToWishList}
+            disableAddToWishListButton={disableAddToWishListButton}
           />
         );
       })}

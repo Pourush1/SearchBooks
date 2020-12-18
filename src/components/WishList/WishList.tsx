@@ -2,17 +2,17 @@ import React from 'react';
 import { IBook } from '../../book-search/BookSearch';
 
 interface IWishListProps {
-  books: IBook[];
+  wishList: IBook[];
 }
 
-const WishList: React.FC<IWishListProps> = ({ books }) => {
+const WishList: React.FC<IWishListProps> = ({ wishList }) => {
   return (
     <div className="mb-4">
       <h4 className="m-auto py-3 text-center">
-        My Reading Wishlist ({books.length})
+        My Reading Wishlist ({wishList.length})
       </h4>
       <div className="row">
-        {books.map((book: IBook) => {
+        {wishList.map((book: IBook) => {
           return (
             <div className="col-md-6 pb-3">
               <div className="card w-75">
