@@ -17,9 +17,10 @@ const BookSearch = () => {
   const [bookTypeToSearch, updateBookTypeToSearch] = useState('');
   const [allAvailableBooks, setAllAvailableBooks] = useState<IBook[]>([]);
   const [wishList, setWishList] = useState<IBook[]>([]);
-
+  const [isLoading, setLoading] = useState(false);
   async function requestBooks() {
     if (bookTypeToSearch) {
+      setLoading(true);
       const { items } = await getBooksByType(bookTypeToSearch);
       if (items) {
         const requiredBooks: IBook[] = items.map((book: any) => {
@@ -34,6 +35,9 @@ const BookSearch = () => {
           };
         });
         setAllAvailableBooks(requiredBooks);
+        setLoading(false);
+      } else {
+        setLoading(false);
       }
     }
   }
@@ -93,7 +97,7 @@ const BookSearch = () => {
               />
             </form>
 
-            {!bookType && (
+            {!bookType ? (
               <div className="empty">
                 <p>
                   Try searching for a topic, for example
@@ -107,22 +111,26 @@ const BookSearch = () => {
                   </a>
                 </p>
               </div>
+            ) : (
+              isLoading && (
+                <div className="d-flex text-center justify-content-center">
+                  <div className="spinner-border d-flex" role="status"></div>
+                </div>
+              )
             )}
           </div>
         </div>
       </div>
 
-      {allAvailableBooks.length ? (
-        <div className="row">
+      {allAvailableBooks.length > 0 && (
+        <div className="row flex-md-row-reverse mx-3 ">
+          <div className="col-md-4  border border-primary m-3 m-md-0">
+            <WishList books={wishList} />
+          </div>
           <div className="col-md-8">
             <BookList books={allAvailableBooks} addToWishList={addToWishList} />
           </div>
-          <div className="col-md-4">
-            <WishList books={wishList} />
-          </div>
         </div>
-      ) : (
-        <h1>Loading</h1>
       )}
     </>
   );

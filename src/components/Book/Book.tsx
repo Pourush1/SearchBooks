@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { IBook } from '../../book-search/BookSearch';
 
 interface IAddToWish {
@@ -11,21 +11,20 @@ const Book: React.FC<IBook & IAddToWish> = ({
   publishedDate,
   thumbnail,
   publisher,
-  description,
   addToWishList
 }) => {
   return (
-    <div className="col-sm-3">
+    <div className="col-sm-3 pb-3">
       <div className="card p-3">
         <img
-          className="card-img-top mb-2"
+          className="card-img-top mb-3"
           src={thumbnail}
           alt="book cover"
         ></img>
-        <p>{title}</p>
         <div className="card-body">
-          <h1>{publishedDate}</h1>
-          <h1>{publisher}</h1>
+          <p className="font-weight-bold">{title}</p>
+          <p>{publishedDate}</p>
+          <p>{publisher}</p>
           <button
             onClick={() =>
               addToWishList({ title, thumbnail, publisher, publishedDate })

@@ -1,13 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-const NotFoundPage = () => {
+const NotFoundPage: React.FC<{}> = () => {
   return (
     <div className="text-center">
-      <p className="mt-5">
-        <Link to="/">Go to Home </Link>
-      </p>
-      <p className="text-warning">Page Not Exists</p>
+      <h1 className="text-warning">Page Not Exists</h1>
+      <p className="text-warning">404</p>
     </div>
   );
 };
