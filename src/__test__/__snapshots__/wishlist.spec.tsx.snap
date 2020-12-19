@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Book /> matches snapshot 1`] = `
+exports[`<WishList /> matches snapshot 1`] = `
 <body>
   <div>
     <div
