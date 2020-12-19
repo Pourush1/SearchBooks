@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, withRouter, BrowserRouter } from 'react-router-dom';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import './styles/App.scss';
 
 import BookSearch from './book-search/BookSearch';

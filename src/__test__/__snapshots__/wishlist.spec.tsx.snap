@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Book /> matches snapshot 1`] = `
+<body>
+  <div>
+    <div
+      class="mb-4"
+    >
+      <h4
+        class="m-auto py-3 text-center"
+      >
+        My Reading Wishlist (
+        2
+        )
+      </h4>
+      <div
+        class="row"
+        data-testid="bookList"
+      >
+        <div
+          class="col-md-6 pb-3"
+          data-testid="book"
+        >
+          <div
+            class="card w-75"
+          >
+            <img
+              alt="book cover"
+              class="card-img-top"
+            />
+            <p
+              class="font-weight-bold"
+            >
+              Java
+            </p>
+          </div>
+        </div>
+        <div
+          class="col-md-6 pb-3"
+          data-testid="book"
+        >
+          <div
+            class="card w-75"
+          >
+            <img
+              alt="book cover"
+              class="card-img-top"
+            />
+            <p
+              class="font-weight-bold"
+            >
+              Javascipt
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

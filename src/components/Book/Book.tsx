@@ -3,7 +3,7 @@ import { IBook } from '../../book-search/BookSearch';
 
 interface IAddToWish {
   addToWishList: (book: IBook) => void;
-  disableAddToWishListButton: boolean;
+  disableAddToWishListButton?: boolean;
 }
 
 const Book: React.FC<IBook & IAddToWish> = ({
