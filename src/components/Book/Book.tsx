@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { IBook } from '../../book-search/BookSearch';
+import moment from 'moment';
 
 interface IAddToWish {
   addToWishList: (book: IBook) => void;
@@ -25,7 +26,7 @@ const Book: React.FC<IBook & IAddToWish> = ({
         ></img>
         <div className="card-body">
           <p className="font-weight-bold">{title}</p>
-          <p>{publishedDate}</p>
+          <p>{moment(publishedDate).format('MMM Do YYYY')}</p>
           <p>{publisher}</p>
           <button
             onClick={() =>

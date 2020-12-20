@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<BookSearch /> matches snapshot 1`] = `
+<body>
+  <div>
+    <div
+      class="book--container"
+    >
+      <div
+        class="search-params"
+      >
+        <div>
+          <form>
+            <input
+              class="full-width"
+              name="gsearch"
+              placeholder="Search for books to add to your reading list and press Enter"
+              type="search"
+              value=""
+            />
+          </form>
+          <div
+            class="empty"
+          >
+            <p>
+              Try searching for a topic, for example
+              <a>
+                 
+                "Javascript"
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

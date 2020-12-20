@@ -18,7 +18,7 @@ exports[`<WishList /> matches snapshot 1`] = `
         data-testid="bookList"
       >
         <div
-          class="col-md-6 pb-3"
+          class="col-md-6 p-3"
           data-testid="book"
         >
           <div
@@ -36,7 +36,7 @@ exports[`<WishList /> matches snapshot 1`] = `
           </div>
         </div>
         <div
-          class="col-md-6 pb-3"
+          class="col-md-6 p-3"
           data-testid="book"
         >
           <div

@@ -25,7 +25,9 @@ exports[`<BookList /> matches snapshot 1`] = `
             >
               Java
             </p>
-            <p />
+            <p>
+              Dec 19th 2020
+            </p>
             <p />
             <button
               class="btn btn-primary"
@@ -54,7 +56,9 @@ exports[`<BookList /> matches snapshot 1`] = `
             >
               Javascipt
             </p>
-            <p />
+            <p>
+              Dec 19th 2020
+            </p>
             <p />
             <button
               class="btn btn-primary"

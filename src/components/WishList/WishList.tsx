@@ -14,7 +14,7 @@ const WishList: React.FC<IWishListProps> = ({ wishList }) => {
       <div className="row" data-testid="bookList">
         {wishList.map((book: IBook) => {
           return (
-            <div className="col-md-6 pb-3" data-testid="book">
+            <div className="col-md-6 p-3" data-testid="book">
               <div className="card w-75">
                 <img
                   className="card-img-top"
