@@ -22,7 +22,7 @@ exports[`<Book /> matches snapshot 1`] = `
             Java
           </p>
           <p>
-            Dec 19th 2020
+            Dec 20th 2020
           </p>
           <p />
           <button

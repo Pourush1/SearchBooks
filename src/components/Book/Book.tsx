@@ -9,7 +9,6 @@ interface IAddToWish {
 
 const Book: React.FC<IBook & IAddToWish> = ({
   title,
-  authors,
   publishedDate,
   thumbnail,
   publisher,

@@ -7,17 +7,17 @@ export interface IBook {
   title: string;
   authors?: string[];
   publishedDate?: string;
-  thumbnail?: string;
+  thumbnail: string;
   publisher?: string;
   description?: string;
 }
 
-const BookSearch = () => {
+const BookSearch: React.FC<{}> = () => {
   const [bookType, updateBookType] = useState('');
   const [bookTypeToSearch, updateBookTypeToSearch] = useState('');
   const [allAvailableBooks, setAllAvailableBooks] = useState<IBook[]>([]);
   const [wishList, setWishList] = useState<IBook[]>([]);
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState<boolean>(false);
 
   async function requestBooks() {
     if (bookTypeToSearch) {
@@ -30,7 +30,7 @@ const BookSearch = () => {
             title: volumeInfo.title,
             authors: volumeInfo.authors,
             publishedDate: volumeInfo.publishedDate,
-            thumbnail: volumeInfo?.imageLinks?.thumbnail,
+            thumbnail: volumeInfo.imageLinks?.thumbnail,
             publisher: volumeInfo.publisher,
             description: volumeInfo.description
           };
@@ -60,7 +60,7 @@ const BookSearch = () => {
   }, [bookType]);
 
   const addToWishList = (book: IBook) => {
-    let newWishList = [...wishList];
+    let newWishList: Array<IBook> = [...wishList];
     let itemInCart = newWishList.find(
       item => item.thumbnail === book.thumbnail
     );
@@ -72,7 +72,6 @@ const BookSearch = () => {
       };
       newWishList.push(newItem);
     }
-    console.log(newWishList);
     setWishList(newWishList);
   };
 

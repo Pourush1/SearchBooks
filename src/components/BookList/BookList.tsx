@@ -26,9 +26,7 @@ const BookList: React.FC<IBookList> = ({
             title={book.title}
             publisher={book.publisher}
             publishedDate={book.publishedDate}
-            authors={book.authors}
             thumbnail={book.thumbnail}
-            description={book.description}
             addToWishList={addToWishList}
             disableAddToWishListButton={disableAddToWishListButton}
           />
