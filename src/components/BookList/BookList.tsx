@@ -15,7 +15,7 @@ const BookList: React.FC<IBookList> = ({
 }) => {
   return (
     <div className="row" data-testid="bookContainer">
-      {allAvailableBooks.map((book: IBook) => {
+      {allAvailableBooks.map((book: IBook, index: number) => {
         const disableAddToWishListButton = wishList.find(
           bookInWishList => bookInWishList.thumbnail === book.thumbnail
         )
@@ -23,6 +23,8 @@ const BookList: React.FC<IBookList> = ({
           : false;
         return (
           <Book
+            key={index}
+            index={index}
             title={book.title}
             publisher={book.publisher}
             publishedDate={book.publishedDate}

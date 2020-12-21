@@ -12,9 +12,9 @@ const WishList: React.FC<IWishListProps> = ({ wishList }) => {
         My Reading Wishlist ({wishList.length})
       </h4>
       <div className="row" data-testid="bookList">
-        {wishList.map((book: IBook) => {
+        {wishList.map((book: IBook, index: number) => {
           return (
-            <div className="col-md-6 p-3" data-testid="book">
+            <div className="col-md-6 p-3" key={index} data-testid="book">
               <div className="card w-75">
                 <img
                   className="card-img-top"
