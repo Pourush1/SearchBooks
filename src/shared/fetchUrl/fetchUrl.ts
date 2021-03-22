@@ -1,3 +1,4 @@
+import { error } from 'console';
 
 /**
  * Fetch call always resolves even with bad requests (except network error)
@@ -7,8 +8,16 @@
  * @param config
  */
 const fetchUrl = (url: string, config = {}): Promise<any> =>
-    fetch(url, config).then(async response => {
+  fetch(url, config)
+    .then(async (response) => {
+      try {
         const data = await response.json();
         return response.ok ? data : Promise.reject(data);
+      } catch (error) {
+        console.error(error);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
     });
 export default fetchUrl;

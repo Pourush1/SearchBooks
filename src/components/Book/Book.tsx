@@ -15,7 +15,7 @@ const Book: React.FC<IBook & IAddToWish> = ({
   publisher,
   addToWishList,
   disableAddToWishListButton,
-  index
+  index,
 }) => {
   return (
     <div className="col-sm-3 pb-3" key={index}>
