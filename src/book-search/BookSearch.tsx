@@ -19,34 +19,35 @@ const BookSearch: React.FC<{}> = () => {
   const [wishList, setWishList] = useState<IBook[]>([]);
   const [isLoading, setLoading] = useState<boolean>(false);
 
-  async function requestBooks() {
-    if (bookTypeToSearch) {
-      setLoading(true);
-      const { items } = await getBooksByType(bookTypeToSearch);
-      if (items) {
-        const requiredBooks: IBook[] = items.map((book: any) => {
-          const { volumeInfo } = book;
-          return {
-            title: volumeInfo.title,
-            authors: volumeInfo.authors,
-            publishedDate: volumeInfo.publishedDate,
-            thumbnail: volumeInfo.imageLinks?.thumbnail,
-            publisher: volumeInfo.publisher,
-            description: volumeInfo.description
-          };
-        });
-        setAllAvailableBooks(requiredBooks);
-        setLoading(false);
-      } else {
-        setLoading(false);
-      }
-    }
-  }
-
   useEffect(() => {
     async function getAllBooks() {
       await requestBooks();
     }
+
+    async function requestBooks() {
+      if (bookTypeToSearch) {
+        setLoading(true);
+        const { items } = await getBooksByType(bookTypeToSearch);
+        if (items) {
+          const requiredBooks: IBook[] = items.map((book: any) => {
+            const { volumeInfo } = book;
+            return {
+              title: volumeInfo.title,
+              authors: volumeInfo.authors,
+              publishedDate: volumeInfo.publishedDate,
+              thumbnail: volumeInfo.imageLinks?.thumbnail,
+              publisher: volumeInfo.publisher,
+              description: volumeInfo.description,
+            };
+          });
+          setAllAvailableBooks(requiredBooks);
+          setLoading(false);
+        } else {
+          setLoading(false);
+        }
+      }
+    }
+
     getAllBooks();
   }, [bookTypeToSearch]);
 
@@ -62,13 +63,13 @@ const BookSearch: React.FC<{}> = () => {
   const addToWishList = (book: IBook) => {
     let newWishList: Array<IBook> = [...wishList];
     let itemInCart = newWishList.find(
-      item => item.thumbnail === book.thumbnail
+      (item) => item.thumbnail === book.thumbnail
     );
     if (!itemInCart) {
       let newItem = {
         title: book.title,
         publisher: book.publisher,
-        thumbnail: book.thumbnail
+        thumbnail: book.thumbnail,
       };
       newWishList.push(newItem);
     }
@@ -81,7 +82,7 @@ const BookSearch: React.FC<{}> = () => {
         <div className="search-params">
           <div>
             <form
-              onSubmit={e => {
+              onSubmit={(e) => {
                 e.preventDefault();
                 updateBookTypeToSearch(bookType);
               }}
@@ -93,7 +94,7 @@ const BookSearch: React.FC<{}> = () => {
                 type="search"
                 value={bookType}
                 placeholder="Search for books to add to your reading list and press Enter"
-                onChange={e => updateBookType(e.target.value)}
+                onChange={(e) => updateBookType(e.target.value)}
               />
             </form>
 
